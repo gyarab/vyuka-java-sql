@@ -32,21 +32,23 @@ public class SQLQuery extends HttpServlet {
             String jdbcURL = System.getenv("JDBC_DATABASE_URL");
             try (Connection conn = DriverManager.getConnection(jdbcURL)) {
                 try (Statement stmt = conn.createStatement()) {
-                    ResultSet rs = stmt.executeQuery(cmd);
+                    {
+                        ResultSet rs = stmt.executeQuery(cmd);
 
-                    int cols = rs.getMetaData().getColumnCount();
+                        int cols = rs.getMetaData().getColumnCount();
 
-                    out.println("<table>");
+                        out.println("<table>");
 
-                    while (rs.next()) {
-                        out.println("<tr>");
-                        for (int i = 1; i < cols; i++) {
-                            out.println("<td>" + rs.getString(i) + "</td>");
+                        while (rs.next()) {
+                            out.println("<tr>");
+                            for (int i = 1; i <= cols; i++) {
+                                out.println("<td>" + rs.getString(i) + "</td>");
+                            }
+                            out.println("</tr>");
                         }
-                        out.println("</tr>");
+
+                        out.println("</table>");
                     }
-                    
-                    out.println("</table>");
                 }
             } catch (SQLException ex) {
                 out.println("<h1>Chyba!</h1><p>chyba pri praci s databazi: <pre>" + ex + "</pre>");
