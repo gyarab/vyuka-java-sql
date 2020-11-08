@@ -14,13 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/sqlcmd")
 public class SQLCmd extends HttpServlet {
-    private String jdbcURL;
-
-    @Override
-    public void init() throws ServletException {
-        String jdbcURL = System.getenv("JDBC_DATABASE_URL");
-    }
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,6 +26,8 @@ public class SQLCmd extends HttpServlet {
         if (cmd == null) {
             out.println("<h1>Chyba!</h1><p>chybi parametr <em>cmd</em></p>");
         } else {
+            String jdbcURL = System.getenv("JDBC_DATABASE_URL");
+
             try (Connection conn = DriverManager.getConnection(jdbcURL)) {
                 try (Statement stmt = conn.createStatement()) {
                     stmt.executeUpdate(cmd);
