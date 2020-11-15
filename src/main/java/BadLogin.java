@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login")
+@WebServlet("/demo2")
 public class BadLogin extends HttpServlet {
 
     @Override
@@ -22,7 +22,7 @@ public class BadLogin extends HttpServlet {
         out.println("<html><body>");
 
         String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
+        String pass = request.getParameter("passwd");
 
         if (name == null || pass == null) {
             out.println("<h1>Chyba!</h1><p>chybi parametr</p>");
