@@ -37,7 +37,7 @@ public class SQLQuery extends HttpServlet {
 
                         int cols = rs.getMetaData().getColumnCount();
 
-                        out.println("<table>");
+                        out.println("<table border=\"1\">");
 
                         while (rs.next()) {
                             out.println("<tr>");

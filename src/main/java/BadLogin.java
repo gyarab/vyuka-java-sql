@@ -31,14 +31,14 @@ public class BadLogin extends HttpServlet {
 
             try (Connection conn = DriverManager.getConnection(jdbcURL)) {
                 try (Statement stmt = conn.createStatement()) {
-                    String sql = "SELECT * FROM users WHERE name = '" + name + "' AND pass = '" + pass + "'";
+                    String sql = "SELECT * FROM users WHERE name = '" + name + "' AND passwd = '" + pass + "'";
                     out.println("SQL prikaz:" + sql);
                     ResultSet rs = stmt.executeQuery(sql);
 
                     if (rs.next()) {
                         out.println("<h1>OK</h1>");
                     } else {
-                        out.println("<h1>Fail</h1>");
+                        out.println("<h1>spatne jmeno nebo heslo</h1>");
                     }
                 }
             } catch (SQLException ex) {
