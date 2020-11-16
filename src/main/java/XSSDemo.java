@@ -11,7 +11,7 @@ public class XSSDemo extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String name = request.getParameter("name");
-
+        
             response.setContentType("text/html;charset=utf-8");
 
             PrintWriter out = response.getWriter();
